@@ -1,32 +1,48 @@
 import '../css/results.css'
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 import { getWeather } from '../services/api'
 import { useWeatherContext } from '../weatherContext/WeatherContext'
 
 
 const Results = () => {
-  
+  const [ data, setData] = useState({})
+  const [ loading, setLoading ] = useState(false)
+  const [ error, setError ] = useState(false)
 
   const {city} = useWeatherContext()
-  const getData = () => {
+  const getData = async () => {
     try {
+      setLoading(true)
+      const res = await getWeather(true)
+      setData(res)
 
     } catch (err) {
-
+      setError(err)
     } finally {
-
+      setLoading(false)
     }
   }
 
-  return (
-    <div className="container">
-    <h1>📍 Weather in <span id="city-name">{city}</span></h1>
+  useEffect(() => {
+    getData(city)
+  }, [city])
 
-    <div className="weather-card">
-      <p className="temperature">🌡️ 26°C</p>
-      <p className="description">☁️ Cloudy</p>
+  console.log(data)
+
+  return (
+    <div className='container'>
+      {error ? (
+        <h1>{`Error: ${error}`}</h1>
+    ): (
+      loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <h1>`Weather for ${city}`</h1>
+      )
+    )}
     </div>
-  </div>
+
+    
   )
 }
 

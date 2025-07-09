@@ -13,9 +13,7 @@ const Home = () => {
     setCity(input)
 
 
-    const navigate = useNavigate
-
-    navigate('./result')
+    useNavigate('./result')
 
   }
 
