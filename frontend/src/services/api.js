@@ -4,7 +4,7 @@ const API_KEY = "e12855e0922b1365d2009c3a158c39a7"
 const getCoords = async (cityName) => {
   const data = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`)
   const results = await data.json()
-  return [results.lat, results.lon]
+  return [results[0].lat, results[0].lon]
 }
 
 export const getWeather = async (cityName) => {

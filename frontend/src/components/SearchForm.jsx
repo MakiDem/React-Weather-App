@@ -7,6 +7,7 @@ const SearchForm = ({ input, setInput }) => {
 
   const handleSearch = (e) => {
     e.preventDefault()
+    if (!input.trim()) return
     setCity(input)
   
   

@@ -14,7 +14,6 @@ const Home = () => {
     <div className="container">
       <h1>🌤️ Weather Finder</h1>
       <p className="subtitle">Check the current weather in any city</p>
-
       <SearchForm input={input} setInput={setInput}/>
       
   </div>
