@@ -35,32 +35,25 @@ const Results = () => {
   console.log('Current state:', { data, loading, error, city })
 
   return (
-    <div className="container">
-      {error ? (
-        <div>
-          <h1>Error</h1>
-          <p>{error}</p>
-        </div>
-      ) : loading ? (
-        <h1>Loading...</h1>
-      ) : data && Object.keys(data).length > 0 ? (
-        <>
-          <h1>Weather for {city}</h1>
-          <p>Description: {data.weather?.[0]?.description || 'No description available'}</p>
-          <p>Temperature: {data.main?.temp ? Math.round(data.main.temp - 273.15) : 'N/A'}°C</p>
-          <p>Humidity: {data.main?.humidity || 'N/A'}%</p>
-          <p>Pressure: {data.main?.pressure || 'N/A'} hPa</p>
-          {/* Debug: Show raw data */}
-          <details>
-            <summary>Raw Data (for debugging)</summary>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </details>
-        </>
-      ) : (
-        <p>No weather data available</p>
-      )}
-    </div>
-  )
-}
+  <div className="container">
+    {data && Object.keys(data).length > 0 ? (
+      <>
+        <h1>Weather for {city}</h1>
+        <p>Description: {data.weather?.[0]?.description || 'No description available'}</p>
+        <p>Temperature: {data.main?.temp ? Math.round(data.main.temp - 273.15) : 'N/A'}°C</p>
+        <p>Humidity: {data.main?.humidity || 'N/A'}%</p>
+        <p>Pressure: {data.main?.pressure || 'N/A'} hPa</p>
+
+        {/* Debug: Show raw data */}
+        <details>
+          <summary>Raw Data (for debugging)</summary>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </details>
+      </>
+    ) : (
+      <p>No weather data available</p>
+    )}
+  </div>
+)}
 
 export default Results
