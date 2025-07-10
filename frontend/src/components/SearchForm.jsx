@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { useWeatherContext } from "../weatherContext/WeatherContext"
 
-const SearchForm = ({ input, setInput }) => {
-  const { setCity } = useWeatherContext()
+const SearchForm = ({ input, setInput, setCity }) => {
   const navigate = useNavigate()
 
   const handleSearch = (e) => {
@@ -11,7 +9,7 @@ const SearchForm = ({ input, setInput }) => {
     setCity(input)
   
   
-    navigate('./result')
+    navigate('/result')
   }
 
   return (

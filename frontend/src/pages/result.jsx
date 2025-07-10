@@ -7,42 +7,59 @@ import { useWeatherContext } from '../weatherContext/WeatherContext'
 const Results = () => {
   const [ data, setData] = useState({})
   const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState(false)
+  const [ error, setError ] = useState(null)
 
   const {city} = useWeatherContext()
-  const getData = async () => {
-    try {
-      setLoading(true)
-      const res = await getWeather(true)
-      setData(res)
-
-    } catch (err) {
-      setError(err)
-    } finally {
-      setLoading(false)
-    }
-  }
+  
 
   useEffect(() => {
-    getData(city)
+    const getData = async () => {
+      try {
+        setLoading(true)
+        const res = await getWeather(city)
+        setData(res)
+        setError(null)
+      } catch (err) {
+        setError(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    if (city) {
+      getData()
+    }
+      
   }, [city])
 
-  console.log(data)
+  console.log('Current state:', { data, loading, error, city })
 
   return (
-    <div className='container'>
+    <div className="container">
       {error ? (
-        <h1>{`Error: ${error}`}</h1>
-    ): (
-      loading ? (
+        <div>
+          <h1>Error</h1>
+          <p>{error}</p>
+        </div>
+      ) : loading ? (
         <h1>Loading...</h1>
+      ) : data && Object.keys(data).length > 0 ? (
+        <>
+          <h1>Weather for {city}</h1>
+          <p>Description: {data.weather?.[0]?.description || 'No description available'}</p>
+          <p>Temperature: {data.main?.temp ? Math.round(data.main.temp - 273.15) : 'N/A'}°C</p>
+          <p>Humidity: {data.main?.humidity || 'N/A'}%</p>
+          <p>Pressure: {data.main?.pressure || 'N/A'} hPa</p>
+          {/* Debug: Show raw data */}
+          <details>
+            <summary>Raw Data (for debugging)</summary>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          </details>
+        </>
       ) : (
-        <h1>`Weather for ${city}`</h1>
-      )
-    )}
+        <p>No weather data available</p>
+      )}
     </div>
-
-    
   )
 }
 
