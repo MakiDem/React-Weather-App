@@ -9,7 +9,7 @@ const SearchForm = ({ input, setInput, setCity }) => {
     setCity(input)
   
   
-    navigate('/result')
+    navigate(`/result?city=${input}`)
   }
 
   return (

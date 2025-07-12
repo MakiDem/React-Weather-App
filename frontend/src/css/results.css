@@ -1,45 +1,77 @@
+
 body {
-  background: linear-gradient(120deg, #f6d365, #fda085);
-  font-family: sans-serif;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #76e4d3, #92aee6);
+  height: auto;
+  overflow-y: scroll;
+}
+
+.weather-container {
+  padding: 2rem 1rem;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.container {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
-
-h1, p {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
 }
 
 .weather-card {
-  background: #f0f4ff;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 
-.weather-card p {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+.header p {
+  font-size: 1.2rem;
+  color: #777;
+  margin-bottom: 1rem;
 }
 
-.back {
-  display: inline-block;
-  margin-top: 1.5rem;
-  color: #007BFF;
-  text-decoration: none;
+#weather-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.stat {
+  background-color: #f5f8fc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat .label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.stat .value {
+  font-size: 1.4rem;
   font-weight: bold;
+  color: #222;
 }
